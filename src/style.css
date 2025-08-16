@@ -31,11 +31,59 @@ h1 {
   line-height: 1.1;
 }
 
+h3 {
+  font-size: 1.2em;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+h4 {
+  font-size: 1em;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Main Application Container */
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0.5rem;
-  text-align: center;
+  max-width: 1200px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Two-column layout for main content */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  #app {
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+  }
 }
 
 .logo {
@@ -51,8 +99,31 @@ h1 {
   filter: drop-shadow(0 0 2em #f7df1eaa);
 }
 
+/* Card Components */
 .card {
-  padding: 0em;
+  padding: 1.5rem;
+  margin: 0;
+  border: 1px solid #444;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #646cff;
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.1);
+}
+
+/* Script status card specific styling */
+.script-status {
+  border-color: #22c55e;
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.script-info {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .read-the-docs {
@@ -79,14 +150,22 @@ button:focus-visible {
 }
 
 /* Form Styles */
-.user-form {
-  max-width: 400px;
-  margin: 0 auto;
+.user-form,
+.business-form {
+  max-width: 100%;
+  margin: 0;
   text-align: left;
 }
 
+/* Form row for side-by-side inputs */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .form-group label {
@@ -94,16 +173,33 @@ button:focus-visible {
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.87);
+  font-size: 0.9rem;
+}
+
+/* Form hints and descriptions */
+.form-hint {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.form-description {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.6rem;
   border: 1px solid #444;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: #1a1a1a;
   color: rgba(255, 255, 255, 0.87);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: inherit;
   transition: border-color 0.25s;
   box-sizing: border-box;
@@ -114,19 +210,101 @@ button:focus-visible {
   border-color: #646cff;
 }
 
+/* Button Styles */
 .submit-btn {
   width: 100%;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  background-color: #646cff;
-  color: white;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.submit-btn:hover {
+/* Primary button variant */
+.submit-btn.primary {
+  background-color: #646cff;
+  color: white;
+}
+
+.submit-btn.primary:hover {
   background-color: #535bf2;
-  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
+}
+
+/* Secondary button variant */
+.submit-btn.secondary {
+  background-color: #22c55e;
+  color: white;
+}
+
+.submit-btn.secondary:hover {
+  background-color: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+}
+
+/* Clear button variant */
+.submit-btn.clear {
+  background-color: #ef4444;
+  color: white;
+}
+
+.submit-btn.clear:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Button group for side-by-side buttons */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.button-group .submit-btn {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* Status Message Styles */
+.status-message {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.status-message .success,
+.status-message .error,
+.status-message .loading,
+.status-message .info {
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.status-message .success {
+  background-color: #22c55e;
+  color: white;
+}
+
+.status-message .error {
+  background-color: #ef4444;
+  color: white;
+}
+
+.status-message .loading {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.status-message .info {
+  background-color: #3b82f6;
+  color: white;
 }
 
 @media (prefers-color-scheme: light) {
@@ -150,5 +328,25 @@ button:focus-visible {
   }
   .form-group input:focus {
     border-color: #646cff;
+  }
+  .card {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-color: #e5e5e5;
+  }
+  h3,
+  h4 {
+    color: #213547;
+  }
+  .form-group label {
+    color: #213547;
+  }
+  .form-hint {
+    color: #666;
+  }
+  .form-description {
+    color: #555;
+  }
+  .script-info {
+    color: #333;
   }
 }
