@@ -39,6 +39,7 @@ const STORAGE_KEYS = {
 document.querySelector("#app").innerHTML = `
   <div class="app-container">
     <div id="status" class="status-message"></div>
+    <a href="https://app.staging.roaspy.com/not-found" target="_blank">Test Cross Domain Tracking (Check URL in next page)</a>
     
     <div class="main-content">
       <div class="left-column">
